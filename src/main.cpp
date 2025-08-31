@@ -26,7 +26,7 @@
 #include "game/features/self/OpenGunLocker.hpp"
 #include "game/features/recovery/DailyActivities.hpp"
 
-namespace YimMenu
+namespace DeltaMenu
 {
 	DWORD Main(void*)
 	{
@@ -35,7 +35,7 @@ namespace YimMenu
 
 		LogHelper::Init("YimMenuV2", FileMgr::GetProjectFile("./cout.log"));
 
-		LOGF(INFO, "Welcome to YimMenuV2! Build date: {} at {}", __DATE__, __TIME__);
+		LOGF(INFO, "Welcome to DeltaMenu Enhanced! Build date: {} at {}", __DATE__, __TIME__);
 
 		g_HotkeySystem.RegisterCommands();
 		SavedLocations::FetchSavedLocations();
@@ -115,7 +115,7 @@ namespace YimMenu
 
 BOOL WINAPI DllMain(HINSTANCE dllInstance, DWORD reason, void*)
 {
-	using namespace YimMenu;
+	using namespace DeltaMenu;
 
 	if (dllInstance)
 		DisableThreadLibraryCalls(dllInstance);
