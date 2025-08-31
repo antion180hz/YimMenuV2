@@ -2,14 +2,14 @@
 #include "game/frontend/Menu.hpp"
 #include "core/frontend/manager/UIManager.hpp"
 
-namespace YimMenu
+namespace DeltaMenu
 {
 	void RenderClassicTheme()
 	{
-		float windowWidth = *YimMenu::Pointers.ScreenResX / 2.5f;
-		float centerX = (*YimMenu::Pointers.ScreenResX - windowWidth) / 2.0f;
-		float centerY = *YimMenu::Pointers.ScreenResY / 5.0f;
-		ImVec2 windowSize(windowWidth, *YimMenu::Pointers.ScreenResY / 2.5f);
+		float windowWidth = *DeltaMenu::Pointers.ScreenResX / 2.5f;
+		float centerX = (*DeltaMenu::Pointers.ScreenResX - windowWidth) / 2.0f;
+		float centerY = *DeltaMenu::Pointers.ScreenResY / 5.0f;
+		ImVec2 windowSize(windowWidth, *DeltaMenu::Pointers.ScreenResY / 2.5f);
 
 		ImGui::SetNextWindowSize(windowSize, ImGuiCond_FirstUseEver);
 		ImGui::SetNextWindowPos(ImVec2(centerX, centerY), ImGuiCond_FirstUseEver);
@@ -27,21 +27,21 @@ namespace YimMenu
 				{
 					if (ImGui::Selectable(submenu->m_Name.data(), (submenu == activeSubmenu)))
 					{
-						YimMenu::UIManager::SetActiveSubmenu(submenu);
-						YimMenu::UIManager::SetShowContentWindow(true);
+						DeltaMenu::UIManager::SetActiveSubmenu(submenu);
+						DeltaMenu::UIManager::SetShowContentWindow(true);
 					}
 				}
 			}
 			ImGui::EndChild();
 
-			ImGui::Text("YimMenuV2");
+			ImGui::Text("DeltaMenu Enhanced");
 
 			pos.y -= 28;
 			ImGui::SetCursorPos(ImVec2(pos.x + 130, pos.y));
 
 			if (ImGui::BeginChild("##minisubmenus", ImVec2(0, 50), true, ImGuiWindowFlags_NoScrollbar))
 			{
-				auto activeSubmenu = YimMenu::UIManager::GetActiveSubmenu();
+				auto activeSubmenu = DeltaMenu::UIManager::GetActiveSubmenu();
 				if (activeSubmenu)
 					activeSubmenu->DrawCategorySelectors();
 			}
@@ -51,11 +51,11 @@ namespace YimMenu
 
 			if (ImGui::BeginChild("##options", ImVec2(0, 0), true))
 			{
-				auto optionsFont = YimMenu::UIManager::GetOptionsFont();
+				auto optionsFont = DeltaMenu::UIManager::GetOptionsFont();
 				if (optionsFont)
 					ImGui::PushFont(optionsFont);
 
-				auto activeSubmenu = YimMenu::UIManager::GetActiveSubmenu();
+				auto activeSubmenu = DeltaMenu::UIManager::GetActiveSubmenu();
 				if (activeSubmenu)
 					activeSubmenu->Draw();
 
